@@ -1,0 +1,162 @@
+/* Configuration */
+configuration {
+    modi:                        "drun,run,theme:~/.scripts/switch-theme.sh";
+    show-icons:                  true;
+    display-drun:                "";
+    display-run:                 " ";
+    display-theme:               "";
+    run-display-format:          "{name}";
+}
+
+/* Colorscheme */
+@import "/home/ghost/.cache/wal/colors-rofi-dark.rasi"
+
+/* Main window */
+window {
+    transparency:                false;
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       40%;
+    height:                      60%;
+    x-offset:                    0px;
+    y-offset:                    0px;
+}
+
+/* Container */
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            @background;
+    orientation:                 vertical;
+    children:                    [ "searchmenu", "listview"];
+}
+
+/* Search Menu */
+searchmenu {
+    enabled:                     true;
+    expand:                      false;
+    padding:                     10px;
+    background-color:            @background;
+    orientation:                 horizontal;
+    children:                    [searchbar, mode-switcher];
+}
+
+/*****----- Searchbar -----*****/
+searchbar {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     10px;
+    border-radius:               10px;
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+    orientation:                 horizontal;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         " ";
+    background-color:            inherit;
+    text-color:                  inherit;
+    font:                        "JetBrains Mono Nerd Font 14";
+}
+entry {
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           inherit;
+    font:                        "JetBrains Mono Nerd Font 14";
+}
+
+/* Modes */
+mode-switcher {
+    enabled:                     true;
+    spacing:                     20px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+button {
+    height:                      20px;
+    width:                       50px;
+    padding:                     10px;
+    border-radius:               5px;
+    background-color:            @background-alt;
+    text-color:                  inherit;
+    cursor:                      pointer;
+    font:                        "JetBrains Mono Nerd Font 12";
+}
+button selected {
+    background-color:            @selected-active-background;
+    text-color:                  @foreground;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       8;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    spacing:                     10px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     15px;
+    padding:                     8px;
+    border-radius:               10px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+    font:                        "JetBrains Mono Nerd Font 10";
+}
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            @urgent-background;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            @active-background;
+    text-color:                  @active-foreground;
+}
+element selected.normal {
+    background-color:            @selected-normal-background;
+    text-color:                  @foreground;
+}
+element selected.urgent {
+    background-color:            @selected-urgent-background;
+    text-color:                  @foreground;
+}
+element selected.active {
+    background-color:            @selected-active-background;
+    text-color:                  @foreground;
+}
+element-icon {
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        32px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    font:                        "JetBrains Mono Nerd Font 10";
+}
