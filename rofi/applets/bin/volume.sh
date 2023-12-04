@@ -7,7 +7,8 @@
 
 # Import Current Theme
 source "$HOME"/.config/rofi/applets/shared/theme.bash
-theme="$type/$style"
+# theme="$type/$style"
+theme="~/.config/rofi/applets/type-3/style-3.rasi"
 
 # Volume Info
 mixer="`amixer info Master | grep 'Mixer name' | cut -d':' -f2 | tr -d \',' '`"

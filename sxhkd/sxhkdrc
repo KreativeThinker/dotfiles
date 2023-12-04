@@ -1,76 +1,89 @@
 #!/bin/bash
 
-
 # Help
 super + question
 	awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' ~/.config/sxhkd/sxhkdrc \
-        | column -t -s $'\t' | rofi --config ~/.config/rofi/custom/menu.rasi -dmenu
-        # | column -t -s $'\t' | bash ~/.config/rofi/launchers/type-6/launcher.sh -dmenu
+    | column -t -s $'\t' | rofi --config ~/.config/rofi/custom/menu.rasi -dmenu
+    # | column -t -s $'\t' | bash ~/.config/rofi/launchers/type-6/launcher.sh -dmenu
 
 # terminal / ranger
 super + {_, shift} + Return
-    export PATH=$HOME/nvim-linux64/bin/:$PATH && EDITOR=$HOME/nvim-linux64/bin/nvim {alacritty, alacritty -e ranger}
+  EDITOR=nvim {alacritty, alacritty -e ranger}
 
 # launcher / power menu
-ctrl + {_, shift} + space
-    bash {~/.config/rofi/custom/menu.sh, ~/.config/rofi/powermenu/type-4/powermenu.sh}
-    # bash {~/.config/rofi/launchers/type-6/launcher.sh, ~/.config/rofi/powermenu/type-5/powermenu.sh}
+ctrl + {_, shift} + space 
+  {~/.config/rofi/custom/menu.sh drun, ~/.config/rofi/powermenu/type-4/powermenu.sh}
+  # bash {~/.config/rofi/launchers/type-6/launcher.sh, ~/.config/rofi/powermenu/type-5/powermenu.sh}
+
+clear notifications
+super + x
+  dunstctl close-all
+
+# View clipboard
+super + c
+  ~/.config/rofi/custom/menu.sh clipboard
+
+# clear clipboard
+super + shift + c
+  pkill greenclip && greenclip clear && greenclip daemon
 
 # kill
 super + q
-    bspc node -c
+  bspc node -c
 
 # workspaces
-# alt + {1-9, 0}
 super + {1-5}
-    bspc desktop -f '^{1-5}'
+  bspc desktop -f '^{1-5}'
 
 super + shift + r
-    bspc wm -r
+  bspc wm -r
 
 # focus change
 super + {h,j,k,l}
-    bspc node -f {west, south, north, east}
+  bspc node -f {west, south, north, east}
 
 # shift window
 super + shift + {h,j,k,l}
-    bspc node -f -s {west, south, north, east}
+  bspc node -f -s {west, south, north, east}
 
 # shift to different workspace
 super + shift + {1-5}
-    bspc node --to-desktop '^{1-5}'
+  bspc node --to-desktop '^{1-5}'
 
 # scratchpad
 super + r
-    bash ~/.config/bspwm/scratchpad
+  bash ~/.config/bspwm/scratchpad
 
 # floating
-super + {_, shift} + space
-    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
-        bspc node focused -t floating; \
-    else \
-        bspc node focused -t tiled; \
-    fi
+super + space
+  if [ -z "$(bspc query -N -n focused.floating)" ]; then \
+      bspc node focused -t floating; \
+  else \
+      bspc node focused -t tiled; \
+  fi
 
 # fullscreen
 super + f
-    if [ -z "$(bspc query -N -n focused.fullscreen)" ]; then \
-        bspc node focused -t fullscreen; \
-        polybar-msg cmd hide; \
-    else \
-        bspc node focused -t floating; \
-        polybar-msg cmd show; \
-    fi
+  if [ -z "$(bspc query -N -n focused.fullscreen)" ]; then \
+      bspc node focused -t fullscreen; \
+      polybar-msg cmd hide; \
+  else \
+      bspc node focused -t floating; \
+      polybar-msg cmd show; \
+  fi
 
 # [next, prev] window
 super + {_, shift} + Tab
-    bspc node -f {next, prev}
+  bspc node -f {next, prev}
 
 # screenshot
 Print
-    ~/.scripts/screenshot.sh
+  ~/.scripts/screenshot.sh
 
 # play/pause
 F9
-    playerctl play-pause
+  playerctl play-pause
 
+# open browser
+super +  {b, slash}
+  {firefox, alacritty -e lynx}

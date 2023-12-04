@@ -1,6 +1,6 @@
-#!bin/bash
+#!/bin/bash
 
 MENU=~/.config/rofi/custom/menu.rasi
-rofi -show drun -theme $MENU
+rofi -show $1 -theme $MENU
 
 

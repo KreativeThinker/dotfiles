@@ -1,10 +1,11 @@
 /* Configuration */
 configuration {
-    modi:                        "drun,run,theme:~/.scripts/switch-theme.sh";
+    modi:                        "drun,run,theme:~/.scripts/switch-theme.sh,clipboard:greenclip print";
     show-icons:                  true;
     display-drun:                "";
     display-run:                 " ";
     display-theme:               "";
+    display-clipboard:           "󰆏";
     run-display-format:          "{name}";
 }
 

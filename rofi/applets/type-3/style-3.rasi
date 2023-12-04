@@ -13,7 +13,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "../shared/colors.rasi"
+/* @import                          "../shared/colors.rasi" */
+@import                          "/home/ghost/.cache/wal/colors-rofi-dark.rasi"
 @import                          "../shared/fonts.rasi"
 
 /*
@@ -30,10 +31,10 @@ window {
     x-offset:                    -20px;
     y-offset:                    0px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     20px;
     border:                      0px solid;
     border-radius:               100%;
-    border-color:                @selected;
+    border-color:                @selected-urgent-background;
     cursor:                      "default";
     background-color:            @background;
 }
@@ -41,9 +42,9 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     15px;
+    spacing:                     10px;
     margin:                      0px;
-    padding:                     15px;
+    padding:                     10px;
     background-color:            transparent;
     children:                    [ "listview" ];
 }
@@ -55,7 +56,7 @@ inputbar {
     padding:                     0px;
     border:                      0px;
     border-radius:               0px;
-    border-color:                @selected;
+    border-color:                @selected-urgent-background;
     background-color:            transparent;
     text-color:                  @foreground;
     children:                    [ "textbox-prompt-colon", "prompt"];
@@ -65,16 +66,16 @@ textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
     str:                         "";
-    padding:                     10px 13px;
+    padding:                     0px;
     border-radius:               0px;
-    background-color:            @urgent;
+    background-color:            @selected-urgent-background;
     text-color:                  @background;
 }
 prompt {
     enabled:                     true;
-    padding:                     10px;
+    padding:                     0px;
     border-radius:               0px;
-    background-color:            @active;
+    background-color:            @active-background;
     text-color:                  @background;
 }
 
@@ -82,11 +83,11 @@ prompt {
 message {
     enabled:                     true;
     margin:                      0px;
-    padding:                     10px;
+    padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @selected;
-    background-color:            @background-alt;
+    border-color:                @selected-normal-background;
+    background-color:            @background;
     text-color:                  @foreground;
 }
 textbox {
@@ -113,16 +114,16 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    padding:                     23px 10px;
+    padding:                     10px;
     border:                      0px solid;
     border-radius:               100%;
-    border-color:                @selected;
+    border-color:                @selected-normal-background;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
 }
 element-text {
-    font:                        "feather 24";
+    font:                        "feather 12";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
@@ -132,22 +133,22 @@ element-text {
 
 element normal.normal,
 element alternate.normal {
-    background-color:            var(background-alt);
+    background-color:            var(background);
     text-color:                  var(foreground);
 }
 element normal.urgent,
 element alternate.urgent,
 element selected.active {
-    background-color:            var(urgent);
+    background-color:            var(selected-urgent-background);
     text-color:                  var(background);
 }
 element normal.active,
 element alternate.active,
 element selected.urgent {
-    background-color:            var(active);
+    background-color:            var(active-background);
     text-color:                  var(background);
 }
 element selected.normal {
-    background-color:            var(selected);
+    background-color:            var(selected-urgent-background);
     text-color:                  var(background);
 }

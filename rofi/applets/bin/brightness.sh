@@ -7,7 +7,8 @@
 
 # Import Current Theme
 source "$HOME"/.config/rofi/applets/shared/theme.bash
-theme="$type/$style"
+# theme="$type/$style"
+theme="~/.config/rofi/applets/type-3/style-3.rasi"
 
 # Brightness Info
 backlight="$(printf "%.0f\n" `light -G`)"
@@ -79,11 +80,11 @@ run_rofi() {
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		light -A 5
+		light -A 10
 	elif [[ "$1" == '--opt2' ]]; then
-		light -S 25
+		light -S 30
 	elif [[ "$1" == '--opt3' ]]; then
-		light -U 5
+		light -U 10
 	elif [[ "$1" == '--opt4' ]]; then
 		xfce4-power-manager-settings
 	fi

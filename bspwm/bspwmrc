@@ -1,16 +1,18 @@
 #!/bin/bash
 #
-killall -q sxhkd
-killall polybar
-killall picom 
-bash ~/.scripts/feh-blur --blur 5 -d
-bash ~/.scripts/switch-theme.sh
-wal -i $WALLPAPER
+killall -q sxhkd &
+killall polybar &
+killall picom &
+killall greenclip
+sxhkd &
+greenclip daemon &
+bash ~/.scripts/switch-theme.sh &
+wal -i $WALLPAPER &
 polybar &
 picom &
-sxhkd &
+bash ~/.scripts/feh-blur --blur 5 -d &
 
-xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr &
 bspc monitor -d 1 2 3 4 5 
 
 # bspc config border_width 1
