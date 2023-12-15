@@ -127,11 +127,12 @@ local plugins = {
           graphql = { "prettier" },
           lua = { "stylua" },
           python = { "isort", "black" },
+          bash = { "prettier" },
         },
         format_on_save = {
           lsp_fallback = true,
-          async = true,
-          timeout_ms = 1000,
+          async = false,
+          timeout_ms = 10000,
         },
       }
     end,
