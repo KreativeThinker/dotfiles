@@ -25,7 +25,7 @@ import:
   #TERM: alacritty
 
 window:
-  opacity: 0.8
+  opacity: 0.95
   padding: 
     x: 10
     y: 10
@@ -128,9 +128,9 @@ window:
 # Font configuration
 font:
   # Normal (roman) font face
-  normal:
-    family: JetBrainsMono Nerd Font
-    style: Medium, Regular
+  family: JetBrainsMono Nerd Font
+  # normal:
+  #   style: Medium, Regular
     #
     # Default:
     #   - (macOS) Menlo
@@ -142,8 +142,8 @@ font:
     #style: Regular
 
   # Bold font face
-  bold:
-    family: Firacode Nerd Font
+  # bold:
+    # family: Firacode Nerd Font
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -154,8 +154,8 @@ font:
     #style: Bold
 
   # Italic font face
-  italic:
-    family: Firacode Nerd Font
+  # italic:
+  #   family: Firacode Nerd Font
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -166,8 +166,8 @@ font:
     #style: Italic
 
   # Bold italic font face
-  bold_italic:
-    family: Firacode Nerd Font
+  # bold_italic:
+  #   family: Firacode Nerd Font
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the

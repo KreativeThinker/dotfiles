@@ -68,7 +68,7 @@ super + f
       bspc node focused -t fullscreen; \
       polybar-msg cmd hide; \
   else \
-      bspc node focused -t floating; \
+      bspc node focused -t tiled; \
       polybar-msg cmd show; \
   fi
 
@@ -85,5 +85,5 @@ F9
   playerctl play-pause
 
 # open browser
-super +  {b, slash}
+super + {b, slash}
   {firefox, alacritty -e lynx}

@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /bin/bash
 #
 # Script to execute switch-theme with coproc cause Rofi freezes
 if [ $# -eq 0 ]; then

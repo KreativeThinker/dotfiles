@@ -2,7 +2,7 @@
 configuration {
     modi:                        "drun,run,theme:~/.config/rofi/custom/theme.sh,clipboard:greenclip print";
     show-icons:                  true;
-    display-drun:                "";
+    display-drun:                "";
     display-run:                 " ";
     display-theme:               "";
     display-clipboard:           "󰆏";
@@ -10,7 +10,7 @@ configuration {
 }
 
 /* Colorscheme */
-@import "/home/ghost/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 /* Main window */
 window {
@@ -87,7 +87,7 @@ button {
     background-color:            @background-alt;
     text-color:                  inherit;
     cursor:                      pointer;
-    font:                        "JetBrains Mono Nerd Font 12";
+    font:                        "JetBrains Mono Nerd Font 10";
 }
 button selected {
     background-color:            @selected-active-background;
