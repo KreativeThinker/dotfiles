@@ -43,7 +43,7 @@ opt.timeoutlen = 400
 opt.undofile = true
 
 -- interval for writing swap file to disk, also used by gitsigns
-opt.updatetime = 250
+-- opt.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
@@ -111,5 +111,5 @@ autocmd("BufWritePost", {
 local new_cmd = vim.api.nvim_create_user_command
 
 new_cmd("NvChadUpdate", function()
-  require "nvchad.updater"()
+  require "nvchad.updater" ()
 end, {})

@@ -151,6 +151,41 @@ local plugins = {
     "mg979/vim-visual-multi",
     lazy = false,
   },
+  {
+    "AlphaTechnolog/pywal.nvim",
+    lazy = false,
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false,
+    opts = {},
+    keys = {
+      {
+        "gw",
+        mode = { "n", "x" },
+        function()
+          require("wtf").ai()
+        end,
+        desc = "Debug diagnostic with AI",
+      },
+      {
+        mode = { "n" },
+        "gW",
+        function()
+          require("wtf").search()
+        end,
+        desc = "Search diagnostic with Google",
+      },
+    },
+  }
 }
 
 return plugins

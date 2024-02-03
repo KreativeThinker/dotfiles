@@ -8,7 +8,7 @@ super + question
 
 # terminal / ranger
 super + {_, shift} + Return
-  EDITOR=nvim {alacritty, alacritty -e ranger}
+  EDITOR=neovide {alacritty, alacritty -e ranger}
 
 # launcher / power menu
 ctrl + {_, shift} + space 
@@ -52,7 +52,9 @@ super + shift + {1-5}
 
 # scratchpad
 super + r
-  bash ~/.config/bspwm/scratchpad
+  scratchpad
+# Toggle focused to scratchpad
+
 
 # floating
 super + space
@@ -62,6 +64,15 @@ super + space
       bspc node focused -t tiled; \
   fi
 
+# floating
+super + s
+  if [ -z "$(bspc query -N -n focused.sticky)" ]; then \
+      bspc node focused -g sticky=on; \
+  else \
+      bspc node focused -g sticky=off; \
+      bspc node focused --layer normal; \
+  fi
+ 
 # fullscreen
 super + f
   if [ -z "$(bspc query -N -n focused.fullscreen)" ]; then \
@@ -78,12 +89,65 @@ super + {_, shift} + Tab
 
 # screenshot
 Print
-  ~/.scripts/screenshot.sh
+  screenshot
 
 # play/pause
 F9
   playerctl play-pause
 
 # open browser
-super + {b, slash}
-  {firefox, alacritty -e lynx}
+super + {b, B, slash}
+  {firefox, firefox --private-window ,alacritty -e lynx}
+
+# Mute
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Decrease/Increase Volume
+{XF86AudioLowerVolume, XF86AudioRaiseVolume}
+  pactl set-sink-volume @DEFAULT_SINK@ {-5%, +5%}
+
+# Decrease/Increase Brightness
+{XF86MonBrightnessDown, XF86MonBrightnessUp}
+  light {-U,-A} 10, -A 10
+
+# Smart expand
+super + alt + {Left,Down,Up,Right}
+  n=10; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+
+# Smart shrink
+super + alt + shift + {Left,Down,Up,Right}
+  n=10; \
+  { d1=right;   d2=left;  dx=-$n; dy=0;   \
+  , d1=top; d2=bottom;    dx=0;   dy=$n;  \
+  , d1=bottom;    d2=top; dx=0;   dy=-$n; \
+  , d1=left;  d2=right;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+
+# Smart expand
+super + alt + {h,j,k,l}
+  n=10; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+
+# Smart shrink
+super + alt + shift + {h,j,k,l}
+  n=10; \
+  { d1=right;   d2=left;  dx=-$n; dy=0;   \
+  , d1=top; d2=bottom;    dx=0;   dy=$n;  \
+  , d1=bottom;    d2=top; dx=0;   dy=-$n; \
+  , d1=left;  d2=right;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+

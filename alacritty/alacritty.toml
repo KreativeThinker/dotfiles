@@ -1,0 +1,21 @@
+import = ["/home/ghost/.cache/wal/colors-alacritty.toml"]
+
+[cursor.style]
+blinking = "On"
+shape = "Beam"
+
+[font]
+size = 8
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations_theme_variant = "Dark"
+dynamic_title = false
+opacity = 0.95
+title = "Alacritty"
+
+[window.padding]
+x = 10
+y = 10

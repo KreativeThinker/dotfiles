@@ -1,6 +1,6 @@
 /* Configuration */
 configuration {
-    modi:                        "drun,run,theme:~/.config/rofi/custom/theme.sh,clipboard:greenclip print";
+    modi:                        "drun,run,theme:switch-theme,clipboard:greenclip print";
     show-icons:                  true;
     display-drun:                "";
     display-run:                 " ";

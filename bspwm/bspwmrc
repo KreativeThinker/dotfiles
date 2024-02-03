@@ -1,20 +1,19 @@
 #!/bin/bash
-#
-killall -q sxhkd polybar picom greenclip
+
+killall -q sxhkd polybar picom greenclip libinput-gestures
 sxhkd &
-~/.fehbg
+~/.fehbg &
 bash ~/.scripts/switch-theme.sh &
 polybar &
 picom &
-greenclip daemon
-# bash ~/.scripts/feh-blur --blur 5 -d &
-
-xsetroot -cursor_name left_ptr &
+greenclip daemon &
+libinput-gestures &
+xsetroot -cursor_name left_ptr 
 bspc monitor -d 1 2 3 4 5 
 
 # bspc config border_width 1
 bspc config border_width 0
-bspc config window_gap 5
+bspc config window_gap 10
 
 bspc config split_ratio 0.5
 bspc config borderless_monocle true
