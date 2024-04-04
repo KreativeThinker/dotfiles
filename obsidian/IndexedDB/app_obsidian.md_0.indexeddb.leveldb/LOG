@@ -1,2 +1,21 @@
-2023/12/20-19:26:27.876 45fb Creating DB /home/ghost/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb since it was missing.
-2023/12/20-19:26:27.888 45fb Reusing MANIFEST /home/ghost/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/MANIFEST-000001
+2024/03/25-21:27:55.733 12b0 Reusing MANIFEST /home/ghost/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/MANIFEST-000001
+2024/03/25-21:27:55.733 12b0 Recovering log #38
+2024/03/25-21:27:55.788 12b0 Reusing old log /home/ghost/.config/obsidian/IndexedDB/app_obsidian.md_0.indexeddb.leveldb/000038.log 
+2024/03/25-21:28:01.705 12fb Level-0 table #43: started
+2024/03/25-21:28:01.733 12fb Level-0 table #43: 1052438 bytes OK
+2024/03/25-21:28:01.736 12fb Delete type=0 #38
+2024/03/25-21:28:01.817 12fb Compacting 1@1 + 1@2 files
+2024/03/25-21:28:01.862 12fb Generated table #44@1: 12582 keys, 1038578 bytes
+2024/03/25-21:28:01.862 12fb Compacted 1@1 + 1@2 files => 1038578 bytes
+2024/03/25-21:28:01.865 12fb compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/03/25-21:28:10.242 12b0 Level-0 table #46: started
+2024/03/25-21:28:10.268 12b0 Level-0 table #46: 925365 bytes OK
+2024/03/25-21:28:10.272 12b0 Delete type=0 #42
+2024/03/25-21:28:10.272 12b0 Delete type=2 #40
+2024/03/25-21:28:10.272 12b0 Delete type=2 #43
+2024/03/25-21:28:10.467 12b0 Compacting 1@1 + 1@2 files
+2024/03/25-21:28:10.516 12b0 Generated table #47@1: 12583 keys, 1038547 bytes
+2024/03/25-21:28:10.517 12b0 Compacted 1@1 + 1@2 files => 1038547 bytes
+2024/03/25-21:28:10.519 12b0 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/03/25-21:28:10.520 12b0 Delete type=2 #46
+2024/03/25-21:28:10.520 12b0 Delete type=2 #44

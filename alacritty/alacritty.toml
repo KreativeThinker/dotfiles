@@ -5,6 +5,7 @@ blinking = "On"
 shape = "Beam"
 
 [font]
+normal = { family = "JetBrainsMono Nerd Font"}
 size = 8
 
 [selection]

@@ -2,7 +2,7 @@
 #
 # Script to execute switch-theme with coproc cause Rofi freezes
 if [ $# -eq 0 ]; then
-	~/.scripts/switch-theme.sh
+	switch-theme
 	exit 0
 fi
-coproc ~/.scripts/switch-theme.sh $@ & disown
+coproc switch-theme $@ & disown

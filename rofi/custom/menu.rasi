@@ -1,11 +1,13 @@
 /* Configuration */
 configuration {
-    modi:                        "drun,run,theme:switch-theme,clipboard:greenclip print";
+    modi:                        "drun,run,theme:~/.config/rofi/custom/theme.sh,clipboard:greenclip print,emoji,calc";
     show-icons:                  true;
     display-drun:                "";
     display-run:                 " ";
     display-theme:               "";
     display-clipboard:           "󰆏";
+    display-emoji:               "";
+    display-calc:                "󰃬";
     run-display-format:          "{name}";
 }
 
@@ -30,7 +32,7 @@ mainbox {
     spacing:                     0px;
     background-color:            @background;
     orientation:                 vertical;
-    children:                    [ "searchmenu", "listview"];
+    children:                    [ "searchmenu", "listview", "message"];
 }
 
 /* Search Menu */
@@ -49,7 +51,7 @@ searchbar {
     spacing:                     10px;
     padding:                     10px;
     border-radius:               10px;
-    background-color:            @background-alt;
+    background-color:            @alternate-normal-background;
     text-color:                  @foreground;
     orientation:                 horizontal;
     children:                    [ "textbox-prompt-colon", "entry" ];
@@ -84,7 +86,7 @@ button {
     width:                       50px;
     padding:                     10px;
     border-radius:               5px;
-    background-color:            @background-alt;
+    background-color:            @alternate-normal-background;
     text-color:                  inherit;
     cursor:                      pointer;
     font:                        "JetBrains Mono Nerd Font 10";

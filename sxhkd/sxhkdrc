@@ -105,11 +105,11 @@ XF86AudioMute
 
 # Decrease/Increase Volume
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
-  pactl set-sink-volume @DEFAULT_SINK@ {-5%, +5%}
+  pactl set-sink-volume @DEFAULT_SINK@ {-5, +5}% && dunstify -t 1000 "Volume" `pactl get-sink-volume @DEFAULT_SINK@ | cut -d ' ' -f 6`
 
 # Decrease/Increase Brightness
 {XF86MonBrightnessDown, XF86MonBrightnessUp}
-  light {-U,-A} 10, -A 10
+  light {-U,-A} 10
 
 # Smart expand
 super + alt + {Left,Down,Up,Right}
@@ -151,3 +151,31 @@ super + alt + shift + {h,j,k,l}
   } \
   bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
+
+alt + b
+  rofi-bluetooth
+
+alt + e 
+  rofi -show emoji -modi emoji -theme ~/.config/rofi/custom/menu.rasi
+
+XF86Calculator
+  rofi -show calc -modi calc -no-show-match -no-sort -theme ~/.config/rofi/custom/menu.rasi
+
+# Music player
+super + {y, m} 
+  {youtube-music, alacritty --title Music -e ncmpcpp
+
+alt + Right
+  playerctl next
+
+alt + Left
+  playerctl previous
+
+alt + space
+  playerctl play-pause
+
+XF86AudioPause
+  playerctl play-pause
+
+XF86AudioPlay
+  playerctl play-pause
