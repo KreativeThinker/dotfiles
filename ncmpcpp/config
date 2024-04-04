@@ -1,0 +1,4 @@
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "FIFO"
+visualizer_type = "wave" (spectrum/wave)
+visualizer_look = ".."
