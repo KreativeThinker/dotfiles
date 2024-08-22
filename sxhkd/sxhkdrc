@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Help
 super + question
@@ -8,7 +8,7 @@ super + question
 
 # terminal / ranger
 super + {_, shift} + Return
-  EDITOR=neovide {alacritty, alacritty -e ranger}
+  EDITOR=neovide {warp-terminal, alacritty -e ranger}
 
 # launcher / power menu
 ctrl + {_, shift} + space 
@@ -16,8 +16,8 @@ ctrl + {_, shift} + space
   # bash {~/.config/rofi/launchers/type-6/launcher.sh, ~/.config/rofi/powermenu/type-5/powermenu.sh}
 
 clear notifications
-super + x
-  dunstctl close-all
+alt + {d, D}
+  {killall dunst, dunst &}
 
 # View clipboard
 super + c
@@ -35,6 +35,16 @@ super + q
 super + {1-5}
   bspc desktop -f '^{1-5}'
 
+super + 0
+  bspc desktop -f 0
+
+super + {a, d}
+  bspc desktop --focus -f {prev, next}
+
+super + {r, W}
+  {staticpad, bspc node --to-desktop 0 --focus -f 0}
+
+# reload bspwm
 super + shift + r
   bspc wm -r
 
@@ -48,11 +58,16 @@ super + shift + {h,j,k,l}
 
 # shift to different workspace
 super + shift + {1-5}
-  bspc node --to-desktop '^{1-5}'
+  bspc node --to-desktop '^{1-5}' --focus -f '^{1-5}'
+
+# shift to adjacent workspace
+super + shift + {a, d}
+  bspc node --to-desktop {prev, next} --focus -f {prev, next}
 
 # scratchpad
-super + r
+super + w
   scratchpad
+  # scratchpad-tiles toggle
 # Toggle focused to scratchpad
 
 
@@ -85,7 +100,7 @@ super + f
 
 # [next, prev] window
 super + {_, shift} + Tab
-  bspc node -f {next, prev}
+  bspc node -f {next, prev}.!sticky
 
 # screenshot
 Print
@@ -97,7 +112,8 @@ F9
 
 # open browser
 super + {b, B, slash}
-  {firefox, firefox --private-window ,alacritty -e lynx}
+  {firefox, firefox --private-window, alacritty -e lynx}
+  # {vivaldi, vivaldi --incognito, alacritty -e lynx}
 
 # Mute
 XF86AudioMute
@@ -179,3 +195,6 @@ XF86AudioPause
 
 XF86AudioPlay
   playerctl play-pause
+
+{XF86AudioMute,XF86AudioMicMute,ctrl + m}
+	pactl set-source-mute alsa_input.pci-0000_04_00.6.HiFi__hw_acp__source toggle && dunstify -t 500 -u low -r '92813' "Mic $(pactl get-source-mute alsa_input.pci-0000_04_00.6.HiFi__hw_acp__source)"

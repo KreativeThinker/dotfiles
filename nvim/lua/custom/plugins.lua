@@ -75,11 +75,24 @@ local plugins = {
       })
     end,
   },
+  -- lazy.nvim
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      -- add any options here
+      routes = {
+        {
+          filter = {
+            event = "lsp",
+            kind = "progress",
+            cond = function(message)
+              local client = vim.tbl_get(message.opts, "progress", "client")
+              return client == "lua_ls"
+            end,
+          },
+          opts = { skip = true },
+        },
+      },
     },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -87,7 +100,20 @@ local plugins = {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      -- "rcarriga/nvim-notify",
+      "rcarriga/nvim-notify",
+    }
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 100,
+      render = "minimal",
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
     },
   },
   {
@@ -102,10 +128,6 @@ local plugins = {
       { "rktjmp/lush.nvim" },
       { "rktjmp/shipwright.nvim" },
     },
-  },
-  {
-    "junegunn/goyo.vim",
-    cmd = { "Goyo" },
   },
   {
     "stevearc/conform.nvim",
@@ -185,7 +207,50 @@ local plugins = {
         desc = "Search diagnostic with Google",
       },
     },
+  }, {
+  "epwalsh/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  -- event = {
+  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+  --   "BufReadPre path/to/my-vault/**.md",
+  --   "BufNewFile path/to/my-vault/**.md",
+  -- },
+  dependencies = {
+    -- Required.
+    "nvim-lua/plenary.nvim",
+
+    -- see below for full list of optional dependencies 👇
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "journal",
+        path = "~/vaults/journal",
+      },
+      {
+        name = "LUGVITC",
+        path = "~/vaults/LUGVITC",
+      },
+      {
+        name = "Triple A Battery",
+        path = "~/vaults/Triple A Battery"
+      }
+    },
+
+    -- see below for full list of options 👇
+  },
+}, {
+  "folke/zen-mode.nvim",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
   }
+}
 }
 
 return plugins
