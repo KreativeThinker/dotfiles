@@ -4,7 +4,7 @@ killall -q sxhkd polybar picom greenclip touchegg
 sxhkd &
 ~/.fehbg &
 polybar &
-picom &
+# picom &
 greenclip daemon &
 touchegg &
 xsetroot -cursor_name left_ptr 

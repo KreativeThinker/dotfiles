@@ -171,6 +171,12 @@ super + alt + shift + {h,j,k,l}
 alt + b
   rofi-bluetooth
 
+alt + w
+  rofi-wifi
+
+alt + t
+  switch-theme
+
 alt + e 
   rofi -show emoji -modi emoji -theme ~/.config/rofi/custom/menu.rasi
 
