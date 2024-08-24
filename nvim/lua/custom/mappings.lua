@@ -37,7 +37,6 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
-
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
     ["<leader>ww"] = { "<cmd> w <CR>", "Save file" },
@@ -50,6 +49,10 @@ M.general = {
       end,
       "Toggle Transparency",
     },
+    -- Split screen
+    ["<leader>sv"] = { "<cmd>vsplit<CR>", "Split vertical" },
+    ["<leader>sh"] = { "<cmd>split<CR>", "Split horizontal" },
+
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
