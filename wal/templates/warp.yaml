@@ -1,10 +1,8 @@
-colors:
-  primary:
-    background: "{background}"
-    foreground: "{foreground}"
-  cursor:
-    text: CellForeground
-    cursor: "{cursor}"
+accent: "{color0}"
+background: "{background}"
+details: darker
+foreground: "{foreground}"
+terminal_colors:
   normal:
     black: "{color0}"
     red: "{color1}"
