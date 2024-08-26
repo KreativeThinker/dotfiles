@@ -6,7 +6,7 @@ local highlights = require "custom.highlights"
 
 M.ui = {
   theme = "chadwal",
-  theme_toggle = { "chadwal", "one_light" },
+  theme_toggle = { "chadwal", "chadwal" },
   hl_override = highlights.override,
   hl_add = highlights.add,
 }
