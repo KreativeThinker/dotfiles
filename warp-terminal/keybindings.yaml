@@ -1,0 +1,12 @@
+---
+"terminal:select_previous_block": ctrl-k
+"workspace:increase_font_size": ctrl-=
+"terminal:executing_command_delete_word_left": none
+"editor_view:move_backward_one_word": none
+"editor_view:delete_all_left": none
+"notebookview:increase_font_size": ctrl-shift-+
+"editor:edit_link": ctrl-e
+"editor_view:add_cursor_below": ctrl-shift-J
+"terminal:select_next_block": ctrl-j
+"notebookview:decrease_font_size": ctrl-shift-_
+"editor_view:cut_all_right": none
