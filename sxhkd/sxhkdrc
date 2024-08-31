@@ -106,6 +106,10 @@ super + {_, shift} + Tab
 Print
   screenshot
 
+# OCR
+super + o
+  ocr
+
 # play/pause
 F9
   playerctl play-pause
