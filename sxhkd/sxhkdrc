@@ -35,14 +35,22 @@ super + q
 super + {1-5}
   bspc desktop -f '^{1-5}'
 
-super + 0
-  bspc desktop -f 0
-
+# shift to workspace left/right
 super + {a, d}
   bspc desktop --focus -f {prev, next}
 
+
 super + {r, W}
-  {staticpad, bspc node --to-desktop 0 --focus -f 0}
+  {staticpad 0, bspc node --to-desktop 0 --focus -f 0}
+
+# Switch to obsidian
+super + o
+  staticpad 8
+  # bspc desktop --focus 8
+
+# Switch to youtube-music
+super + y
+  staticpad 9
 
 # reload bspwm
 super + shift + r
@@ -107,12 +115,8 @@ Print
   screenshot
 
 # OCR
-super + o
+alt + o
   ocr
-
-# play/pause
-F9
-  playerctl play-pause
 
 # open browser
 super + {b, B, slash}
@@ -171,40 +175,54 @@ super + alt + shift + {h,j,k,l}
   } \
   bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
-
+# Bluetooth
 alt + b
   rofi-bluetooth
 
+# iwgtk
 alt + w
-  rofi-wifi
+  iwgtk
+  # rofi-wifi
 
+# Switch theme
 alt + t
   switch-theme
 
+# Emoji picker
 alt + e 
   rofi -show emoji -modi emoji -theme ~/.config/rofi/custom/menu.rasi
 
+# Calculator
 XF86Calculator
   rofi -show calc -modi calc -no-show-match -no-sort -theme ~/.config/rofi/custom/menu.rasi
 
 # Music player
-super + {y, m} 
-  {youtube-music, alacritty --title Music -e ncmpcpp
+super + m 
+  alacritty --title Music -e ncmpcpp
 
+# next song
 alt + Right
   playerctl next
 
+# previous song
 alt + Left
   playerctl previous
 
+# play-pause
 alt + space
   playerctl play-pause
 
+# play-pause
 XF86AudioPause
   playerctl play-pause
 
+# play-pause
 XF86AudioPlay
   playerctl play-pause
 
 {XF86AudioMute,XF86AudioMicMute,ctrl + m}
 	pactl set-source-mute alsa_input.pci-0000_04_00.6.HiFi__hw_acp__source toggle && dunstify -t 500 -u low -r '92813' "Mic $(pactl get-source-mute alsa_input.pci-0000_04_00.6.HiFi__hw_acp__source)"
+
+# Color Picker
+alt + c
+  colorpicker --short --one-shot | xsel --clipboard
