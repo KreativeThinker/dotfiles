@@ -1,12 +1,17 @@
 ---
-"terminal:select_previous_block": ctrl-k
-"workspace:increase_font_size": ctrl-=
-"terminal:executing_command_delete_word_left": none
-"editor_view:move_backward_one_word": none
-"editor_view:delete_all_left": none
 "notebookview:increase_font_size": ctrl-shift-+
-"editor:edit_link": ctrl-e
 "editor_view:add_cursor_below": ctrl-shift-J
-"terminal:select_next_block": ctrl-j
-"notebookview:decrease_font_size": ctrl-shift-_
+"editor:edit_link": ctrl-e
+"workspace:increase_font_size": ctrl-=
+"editor_view:delete_all_left": none
+"workspace:shift_focus_left": ctrl-shift-H
 "editor_view:cut_all_right": none
+"notebookview:decrease_font_size": ctrl-shift-_
+"terminal:focus_input": none
+"terminal:select_next_block": ctrl-j
+"editor_view:move_backward_one_word": none
+"terminal:select_previous_block": ctrl-k
+"ai_assistant_panel:focus_terminal_input": none
+"terminal:executing_command_delete_word_left": none
+"notebookview:focus_terminal_input": none
+"workspace:shift_focus_right": ctrl-shift-L
