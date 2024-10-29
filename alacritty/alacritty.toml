@@ -1,4 +1,3 @@
-import = ["/home/ghost/.cache/wal/colors-alacritty.toml"]
 
 [cursor.style]
 blinking = "On"
@@ -20,3 +19,6 @@ title = "Alacritty"
 [window.padding]
 x = 10
 y = 10
+
+[general]
+import = ["/home/ghost/.cache/wal/colors-alacritty.toml"]
