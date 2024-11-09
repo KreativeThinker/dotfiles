@@ -17,4 +17,8 @@ if vim.g.neovide then
   -- vim.g.neovide_light_angle_degrees = 45
   vim.g.neovide_light_radius = 12
   vim.opt.conceallevel = 1
+  local opt = vim.opt
+
+  opt.foldmethod = "expr"
+  opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
