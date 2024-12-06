@@ -1,4 +1,4 @@
-accent: "{color0}"
+accent: "{foreground}"
 background: "{background}"
 details: darker
 foreground: "{foreground}"
