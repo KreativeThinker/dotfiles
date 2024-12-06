@@ -120,7 +120,9 @@ alt + o
 
 # open browser
 super + {b, B, slash}
-  {firefox, firefox --private-window, alacritty -e lynx}
+  {zen-browser, zen-browser --private-window, alacritty -e lynx}
+  # {floorp, floorp --private-window, alacritty -e lynx}
+  # {firefox, firefox --private-window, alacritty -e lynx}
   # {vivaldi, vivaldi --incognito, alacritty -e lynx}
 
 # Mute
@@ -226,3 +228,7 @@ XF86AudioPlay
 # Color Picker
 alt + c
   colorpicker --short --one-shot | xsel --clipboard
+
+# Copy Paste type
+ctrl + shift + 2
+  sleep 1; xdotool type --delay 10 "$(xclip -o -selection clipboard | sed 's/^[\t]*//')"
