@@ -28,6 +28,10 @@ M.general = {
     ["<C-l>"] = { "<Right>", "Move right" },
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
+
+    -- Move lines up and down
+    ["<A-k>"] = { "<cmd> m -2 <CR>", "Move line up" },
+    ["<A-j>"] = { "<cmd> m +1 <CR>", "Move line down" },
   },
 
   n = {
@@ -37,6 +41,10 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
+
+    -- Move lines up and down
+    ["<A-k>"] = { "<cmd> m -2 <CR>", "Move line up" },
+    ["<A-j>"] = { "<cmd> m +1 <CR>", "Move line down" },
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
     ["<leader>ww"] = { "<cmd> w <CR>", "Save file" },

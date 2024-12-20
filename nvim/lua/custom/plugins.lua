@@ -228,49 +228,53 @@ local plugins = {
   opts = {
     workspaces = {
       {
-        name = "journal",
-        path = "~/vaults/journal",
+        name = "vault",
+        path = "$HOME/vaults",
       },
-      {
-        name = "LUGVITC",
-        path = "~/vaults/LUGVITC",
-      },
-      {
-        name = "Triple A Battery",
-        path = "~/vaults/Triple A Battery"
-      }
     },
 
     -- see below for full list of options 👇
   },
 }, {
   "folke/zen-mode.nvim",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
+  opts = {}
+}, {
+  "kdheepak/lazygit.nvim",
+  lazy = true,
+  cmd = {
+    "LazyGit",
+    "LazyGitConfig",
+    "LazyGitCurrentFile",
+    "LazyGitFilter",
+    "LazyGitFilterCurrentFile",
+  },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  keys = {
+    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
   }
-},
-  {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
+}, {
+  "chrisgrieser/nvim-rip-substitute",
+  cmd = "RipSubstitute",
+  keys = {
+    {
+      "<leader>fs",
+      function() require("rip-substitute").sub() end,
+      mode = { "n", "x" },
+      desc = " rip substitute",
     },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
+  },
+}, {
+  "zbirenbaum/copilot.lua",
+  lazy = true,
+  cmd = {
+    "Copilot"
   }
+}, {
+  "MunifTanjim/prettier.nvim"
+}
+
 }
 
 return plugins
