@@ -21,9 +21,8 @@ bspc config focus_follows_pointer true
 bspc config ignore_ewmh_focus on
 bspc config ignore_ewmh_struts true
 
-bspc rule -a "obsidian" -o desktop=8
-bspc rule -a "YouTube Music" -o desktop=9
+bspc rule -a "obsidian" desktop=8
+bspc rule -a "YouTube Music" desktop=9
 bspc rule -a "iwgtk" state=floating
 
-obsidian &
-youtube-music
+obsidian
