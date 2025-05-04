@@ -51,6 +51,11 @@ M.general = {
     ["<leader>wq"] = { "<cmd> wq <CR>", "Save and Quit file" },
     ["<leader>q"] = { "<cmd> q <CR>", "Quit file" },
 
+    -- Diagnostic float
+    ["<leader>d"] = { "<cmd> lua vim.diagnostic.open_float() <CR>", "Open Diagnostic" },
+    ["gd"] = { "<cmd> lua vim.lsp.buf.declaration() <CR>", "Go to declaration" },
+    ["gD"] = { "<cmd> lua vim.lsp.buf.definition() <CR>", "Go to definition" },
+
     ["<leader>tt"] = {
       function()
         require("base46").toggle_transparency()
