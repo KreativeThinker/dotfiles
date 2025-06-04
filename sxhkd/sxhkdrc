@@ -8,7 +8,7 @@ super + question
 
 # terminal / ranger
 super + {_, shift} + Return
-  EDITOR=nvim {warp-terminal, alacritty -e ranger}
+  EDITOR=nvim {alacritty, alacritty -e ranger}
 
 # launcher / power menu
 ctrl + {_, shift} + space 
