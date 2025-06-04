@@ -210,7 +210,7 @@
 gradient = 1
 gradient_count = 2
 gradient_color_1 = '{color1}'
-gradient_color_8 = '{color7}'
+gradient_color_2 = '{color7}'
 # gradient_color_2 = '{color2}'
 # gradient_color_3 = '{color3}'
 # gradient_color_4 = '{color4}'
