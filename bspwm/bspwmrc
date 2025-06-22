@@ -1,13 +1,16 @@
 #!/bin/bash
 
-killall -q sxhkd polybar picom greenclip touchegg
+killall -q sxhkd polybar greenclip touchegg
 sxhkd &
+# xrandr --output HDMI-1 --mode 1440x900 --scale 1x1
 ~/.fehbg &
 polybar &
 greenclip daemon &
 touchegg &
 xsetroot -cursor_name left_ptr &
 bspc monitor -d 1 2 3 4 5 8 9 0
+# bspc monitor eDP-1 -d 1 2 3 4 5
+# bspc monitor HDMI-1 -d 8 9 0
 
 bspc config border_width 2
 bspc config window_gap 10
@@ -24,5 +27,3 @@ bspc config ignore_ewmh_struts true
 bspc rule -a "obsidian" desktop=8
 bspc rule -a "YouTube Music" desktop=9
 bspc rule -a "iwgtk" state=floating
-
-obsidian

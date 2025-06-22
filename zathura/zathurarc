@@ -1,4 +1,6 @@
 set selection-clipboard clipboard
+set database "sqlite"
+
 
 set recolor "true"
 set default-bg "#F4EED8"
@@ -10,11 +12,12 @@ set recolor-lightcolor "#F4EED8"
 set adjust-open "best-fit"
 set pages-per-row 1
 set scroll-page-aware "true"
-set smooth-scroll "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
 set render-loading "false"
 set scroll-step 50
+
+# KEYBINDS
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
