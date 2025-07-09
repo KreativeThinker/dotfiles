@@ -8,7 +8,7 @@ local servers = {
   "cssls", -- vscode-css-language-server
   "ts_ls", -- typescript-language-server (not ts_ls)
   "clangd", -- clangd
-  "pyright", -- pyright
+  -- "pyright", -- pyright
   "marksman", -- markdown
   "lua_ls", -- lua-language-server
   "svelte", -- svelte-language-server
@@ -19,6 +19,8 @@ local servers = {
   "dockerls", -- dockerfile-language-server
   "docker_compose_language_service", -- docker-compose-language-service
   "prismals", -- prisma-language-server
+  "gopls", -- Go language server
+  "ruff", -- Python ruff LSP
 }
 
 for _, lsp in ipairs(servers) do
@@ -27,3 +29,18 @@ for _, lsp in ipairs(servers) do
     -- capabilities = capabilities,
   }
 end
+
+lspconfig.pyright.setup {
+  settings = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { "*" },
+      },
+    },
+  },
+}

@@ -152,7 +152,7 @@ local plugins = {
           markdown = { "prettier" },
           graphql = { "prettier" },
           lua = { "stylua" },
-          python = { "isort", "black", "docformatter" },
+          python = { "isort", "black", "docformatter", "ruff" },
           bash = { "prettier" },
         },
         format_on_save = {
@@ -185,32 +185,6 @@ local plugins = {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {}, -- this is equalent to setup({}) function
-  },
-  {
-    "piersolenski/wtf.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    lazy = false,
-    opts = {},
-    keys = {
-      {
-        "gw",
-        mode = { "n", "x" },
-        function()
-          require("wtf").ai()
-        end,
-        desc = "Debug diagnostic with AI",
-      },
-      {
-        mode = { "n" },
-        "gW",
-        function()
-          require("wtf").search()
-        end,
-        desc = "Search diagnostic with Google",
-      },
-    },
   },
   {
     "epwalsh/obsidian.nvim",
@@ -358,6 +332,32 @@ local plugins = {
       },
     },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      -- lsp_keymaps = false,
+      -- other options
+    },
+    config = function(lp, opts)
+      require("go").setup(opts)
+      local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function()
+          require("go.format").goimports()
+        end,
+        group = format_sync_grp,
+      })
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }
 
