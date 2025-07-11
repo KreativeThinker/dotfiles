@@ -152,7 +152,7 @@ local plugins = {
           markdown = { "prettier" },
           graphql = { "prettier" },
           lua = { "stylua" },
-          python = { "isort", "black", "docformatter", "ruff" },
+          python = { "docformatter", "isort", "ruff_fix", "ruff_format", "ruff_organize_imports" },
           bash = { "prettier" },
         },
         format_on_save = {
