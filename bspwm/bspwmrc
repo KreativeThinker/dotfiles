@@ -25,5 +25,6 @@ bspc config ignore_ewmh_focus on
 bspc config ignore_ewmh_struts true
 
 bspc rule -a "obsidian" desktop=8
-bspc rule -a "YouTube Music" desktop=9
+bspc rule -a "com.github.th_ch.youtube_music" desktop=9
+bspc rule -a "Slack" desktop=0
 bspc rule -a "iwgtk" state=floating
