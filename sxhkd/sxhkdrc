@@ -76,8 +76,6 @@ super + shift + {a, d}
 super + w
   scratchpad
   # scratchpad-tiles toggle
-# Toggle focused to scratchpad
-
 
 # floating
 super + space
@@ -129,9 +127,18 @@ super + {b, B, slash}
 XF86AudioMute
   pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+super + F1
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 # Decrease/Increase Volume
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
   pactl set-sink-volume @DEFAULT_SINK@ {-5, +5}% && dunstify -t 1000 "Volume" `pactl get-sink-volume @DEFAULT_SINK@ | cut -d ' ' -f 6`
+
+super + {F2, F3}
+  pactl set-sink-volume @DEFAULT_SINK@ {-5, +5}% && dunstify -t 1000 "Volume" `pactl get-sink-volume @DEFAULT_SINK@ | cut -d ' ' -f 6`
+
+super + {F5, F6}
+  light {-U,-A} 10
 
 # Decrease/Increase Brightness
 {XF86MonBrightnessDown, XF86MonBrightnessUp}
@@ -198,9 +205,10 @@ alt + e
 XF86Calculator
   rofi -show calc -modi calc -no-show-match -no-sort -theme ~/.config/rofi/custom/menu.rasi
 
-# Music player
-super + m 
-  alacritty --title Music -e ncmpcpp
+# Monocle / Tiled Mode toggle
+super + m
+	bspc desktop -l next
+
 
 # next song
 alt + Right
@@ -232,3 +240,4 @@ alt + c
 # Copy Paste type
 ctrl + shift + 2
   sleep 1; xdotool type --delay 10 "$(xclip -o -selection clipboard | sed 's/^[\t]*//')"
+

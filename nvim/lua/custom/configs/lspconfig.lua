@@ -21,6 +21,7 @@ local servers = {
   "prismals", -- prisma-language-server
   "gopls", -- Go language server
   "ruff", -- Python ruff LSP
+  "jdtls",
 }
 
 for _, lsp in ipairs(servers) do

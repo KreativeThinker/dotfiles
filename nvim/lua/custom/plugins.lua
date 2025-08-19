@@ -152,12 +152,20 @@ local plugins = {
           markdown = { "prettier" },
           graphql = { "prettier" },
           lua = { "stylua" },
-          python = { "docformatter", "isort", "ruff_fix", "ruff_format", "ruff_organize_imports" },
+          python = {},
+          -- python = { "docformatter", "isort", "ruff_fix", "ruff_format", "ruff_organize_imports" },
+          cpp = { "clang-format" },
           bash = { "prettier" },
+          java = { "clang-format" },
         },
         format_on_save = {
-          lsp_fallback = true,
-          async = false,
+          lsp_fallback = false,
+          -- async = true,
+          timeout_ms = 10000,
+        },
+        format_after_save = {
+          lsp_fallback = false,
+          async = true,
           timeout_ms = 10000,
         },
       }
@@ -332,6 +340,18 @@ local plugins = {
       },
     },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
+  {
+    "derektata/lorem.nvim",
+    config = function()
+      require("lorem").opts {
+        sentence_length = "mixed", -- using a default configuration
+        comma_chance = 0.3, -- 30% chance to insert a comma
+        max_commas = 2, -- maximum 2 commas per sentence
+        debounce_ms = 200, -- default debounce time in milliseconds
+      }
+    end,
+    lazy = false,
   },
   {
     "ray-x/go.nvim",

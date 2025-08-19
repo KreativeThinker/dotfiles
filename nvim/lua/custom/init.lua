@@ -6,7 +6,8 @@
 --   command = "tabdo wincmd =",
 -- })
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMono Nerd Font:h9"
+  vim.o.guifont = "JetBrainsMono Nerd Font:h8"
+  -- vim.o.guifont = "JetBrainsMono Nerd Font:h9"
   -- vim.o.guifont = "JetBrainsMono Nerd Font:h15"
   -- vim.g.neovide_transparency = 0.6
   -- vim.g.neovide_cursor_trail_size = 0.7
