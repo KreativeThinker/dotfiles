@@ -5,7 +5,6 @@ set database "sqlite"
 set recolor "true"
 set default-bg "#F4EED8"
 set default-fg "#121212"
-set highlight-color "#1020A0"
 
 set recolor-darkcolor "#121212"
 set recolor-lightcolor "#F4EED8"

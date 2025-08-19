@@ -62,7 +62,9 @@ run_cmd() {
 			systemctl reboot
 		elif [[ $1 == '--suspend' ]]; then
 			mpc -q pause
+      playerctl stop
 			amixer set Master mute
+      i3lock
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
 			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
