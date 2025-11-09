@@ -5,7 +5,7 @@ shape = "Beam"
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font"}
-size = 9
+size = 7
 
 [selection]
 save_to_clipboard = true
