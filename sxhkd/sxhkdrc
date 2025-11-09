@@ -33,7 +33,7 @@ super + q
 
 # workspaces
 super + {1-5}
-  bspc desktop -f '^{1-5}'
+  bspc desktop -f '{1-5}'
 
 # shift to workspace left/right
 super + {a, d}
