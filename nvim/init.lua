@@ -1,37 +1,21 @@
-require "core"
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
 
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMono Nerd Font:h7"
+  -- vim.o.guifont = "JetBrainsMono Nerd Font:h9"
+  -- vim.o.guifont = "JetBrainsMono Nerd Font:h15"
+  -- vim.g.neovide_transparency = 0.6
+  -- vim.g.neovide_cursor_trail_size = 0.7
+  vim.g.neovide_refresh_rate = 60
+  vim.g.neovide_scroll_animation_length = 0.2
+  vim.g.neovide_floating_shadow = true
+  vim.g.neovide_floating_z_height = 10
+  -- vim.g.neovide_light_angle_degrees = 45
+  vim.g.neovide_light_radius = 12
+  vim.opt.conceallevel = 2
+  local opt = vim.opt
 
-if custom_init_path then
-  dofile(custom_init_path)
+  opt.foldmethod = "expr"
+  opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
-
-require("core.utils").load_mappings()
-
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
-end
-
-dofile(vim.g.base46_cache .. "defaults")
-vim.opt.rtp:prepend(lazypath)
-
-local nvim_config_path = vim.fn.stdpath "config"
-local python_script = nvim_config_path .. "/pywal/chadwal.py"
-
-os.execute("python3 " .. python_script .. " &> /dev/null &")
-require "plugins"
-os.execute "python ~/.config/nvim/pywal/chadwal.py &> /dev/null &"
-
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("Signal", {
-  pattern = "SIGUSR1",
-  callback = function()
-    -- require("nvchad.utils").reload()
-    require("plenary.reload").reload_module "nvchad"
-  end,
-})
