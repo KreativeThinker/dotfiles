@@ -16,10 +16,8 @@
   s (multi f24 (tap-hold $tap-time $hold-time s lsft))
   d (multi f24 (tap-hold $tap-time $hold-time d lctl))
   f (multi f24 (tap-hold $tap-time $hold-time f lmet))
-  j (multi f24 (tap-hold $tap-time $hold-time j rmet))
-  k (multi f24 (tap-hold $tap-time $hold-time k rctl))
   l (multi f24 (tap-hold $tap-time $hold-time l rsft))
-  ; (multi f24 (tap-hold $tap-time $hold-time ; ralt))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
 )
 
 (deflayer base
