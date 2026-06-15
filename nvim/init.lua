@@ -1,6 +1,9 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+-- Load LSP configuration
+require("config.lsp")
+
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono Nerd Font:h7"
   -- vim.o.guifont = "JetBrainsMono Nerd Font:h9"

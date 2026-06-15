@@ -33,5 +33,3 @@ bspc rule -a "Slack" desktop=0
 bspc rule -a "iwgtk" state=floating
 
 xrdb -merge ~/.Xresources
-~/.screenlayout/study.sh
-slack

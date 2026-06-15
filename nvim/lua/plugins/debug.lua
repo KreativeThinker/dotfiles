@@ -1,3 +1,4 @@
+-- Debug Plugin Configuration
 return {
   {
     "mfussenegger/nvim-dap",
@@ -5,74 +6,117 @@ return {
       "rcarriga/nvim-dap-ui",
       "jay-babu/mason-nvim-dap.nvim",
       "nvim-neotest/nvim-nio",
-      "theHamsta/nvim-dap-virtual-text", -- 👈 add this line
+      "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
-  local dap = require("dap")
-  local dapui = require("dapui")
-  local dapvt = require("nvim-dap-virtual-text")
+      local dap = require("dap")
+      local dapui = require("dapui")
+      local dapvt = require("nvim-dap-virtual-text")
 
-  ------------------------------------------------------------------------
-  -- 🎯 Keymaps
-  ------------------------------------------------------------------------
-  local map = vim.keymap.set
+      -- Python adapter - use system debugpy if available, fallback to mason
+      local python_cmd = vim.fn.exepath("python3") or "python"
+      dap.adapters.python = {
+        type = "executable",
+        command = python_cmd,
+        args = { "-m", "debugpy.adapter" },
+      }
 
-  map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-  map("n", "<leader>dc", dap.continue, { desc = "Start/Continue" })
-  map("n", "<leader>di", dap.step_into, { desc = "Step Into" })
-  map("n", "<leader>do", dap.step_over, { desc = "Step Over" })
-  map("n", "<leader>dO", dap.step_out, { desc = "Step Out" })
-  map("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
-  map("n", "<leader>dl", dap.run_last, { desc = "Run Last" })
-  map("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
-  map("n", "<leader>dx", dap.terminate, { desc = "Terminate Debug Session" })
-  ---
-  ------------------------------------------------------------------------
-  -- 🧩 Virtual text setup (inline variable hints)
-  ------------------------------------------------------------------------
-  dapvt.setup({
-    enabled = true,
-    enabled_commands = true,
-    highlight_changed_variables = true,
-    highlight_new_as_changed = true,
-    show_stop_reason = true,
-    commented = false,
-    virt_text_pos = "eol", -- alternatives: 'eol' | 'right_align' | 'above'
-    all_frames = false,
-    all_references = false,
-  })
-  ------------------------------------------------------------------------
-  -- 🧩 DAP UI setup
-  ------------------------------------------------------------------------
-  dapui.setup()
+      -- C/C++ adapter
+      dap.adapters.cppdbg = {
+        type = "executable",
+        command = "cppdbg",
+        args = {},
+      }
 
-  dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
-  end
-  dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
-  end
-  -- dap.listeners.before.event_exited["dapui_config"] = function()
-  --   dapui.close()
-  -- end
-
-  ------------------------------------------------------------------------
-  -- 🔧 Per-language DAP setup
-  ------------------------------------------------------------------------
-  local langs = { "python", "cpp", "lua" }
-
-  for _, lang in ipairs(langs) do
-    local ok, mod = pcall(require, "languages." .. lang)
-    if ok and type(mod.dap_setup) == "function" then
-      mod.dap_setup() -- <-- direct function call (your pattern)
-    elseif ok and type(mod.dap_setup) == "table" then
-      for _, setup_fn in pairs(mod.dap_setup) do
-        if type(setup_fn) == "function" then
-          setup_fn(dap)
-        end
+      -- Node.js adapter
+      local js_debug_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/srcDebug.js"
+      if vim.fn.filereadable(js_debug_path) == 0 then
+        js_debug_path = vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/nodeDebug.js"
       end
-    end
-  end
+
+      dap.adapters.node2 = {
+        type = "executable",
+        command = "node",
+        args = { js_debug_path },
+      }
+
+      -- Python configurations - use python3
+      dap.configurations.python = {
+        {
+          type = "python",
+          request = "launch",
+          name = "Launch File",
+          program = "${file}",
+          python = python_cmd,
+          console = "integratedTerminal",
+        },
+        {
+          type = "python",
+          request = "launch",
+          name = "Launch Module",
+          module = function()
+            return vim.fn.input("Module name: ")
+          end,
+          python = python_cmd,
+          console = "integratedTerminal",
+        },
+      }
+
+      -- C++ configurations
+      dap.configurations.cpp = {
+        {
+          name = "Launch C++",
+          type = "cppdbg",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          setupCommands = {
+            { description = "Enable pretty-printing", text = "-enable-pretty-printing" },
+          },
+        },
+      }
+
+      -- C configurations
+      dap.configurations.c = dap.configurations.cpp
+
+      -- TypeScript/JavaScript configurations
+      dap.configurations.typescript = {
+        {
+          type = "node2",
+          request = "launch",
+          name = "Launch Node.js",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+      }
+
+      dap.configurations.javascript = dap.configurations.typescript
+
+      -- Virtual text for variables
+      dapvt.setup({
+        enabled = true,
+        highlight_changed_variables = true,
+        show_stop_reason = true,
+      })
+
+      -- Keymaps
+      local map = vim.keymap.set
+      map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+      map("n", "<leader>dc", dap.continue, { desc = "Start/Continue" })
+      map("n", "<leader>di", dap.step_into, { desc = "Step Into" })
+      map("n", "<leader>do", dap.step_over, { desc = "Step Over" })
+      map("n", "<leader>dO", dap.step_out, { desc = "Step Out" })
+      map("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
+      map("n", "<leader>dl", dap.run_last, { desc = "Run Last" })
+      map("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
+      map("n", "<leader>dx", dap.terminate, { desc = "Terminate" })
+
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
     end,
   },
 }

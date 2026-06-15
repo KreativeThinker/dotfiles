@@ -7,8 +7,9 @@ super + question
     # | column -t -s $'\t' | bash ~/.config/rofi/launchers/type-6/launcher.sh -dmenu
 
 # terminal / ranger
-super + {_, shift} + Return
-  EDITOR=nvim {alacritty, alacritty -e ranger}
+super + {_, shift, alt} + Return
+  EDITOR=nvim {st -f "JetBrainsMono Nerd Font Mono:size=10", st -f "JetBrainsMono Nerd Font Mono:size=10" -e ranger, st -f "JetBrainsMono Nerd Font Mono:size=9"}
+  # EDITOR=nvim {alacritty, alacritty -e ranger}
 
 # launcher / power menu
 ctrl + {_, shift} + space 
@@ -66,7 +67,7 @@ super + shift + {h,j,k,l}
 
 # shift to different workspace
 super + shift + {1-5}
-  bspc node --to-desktop '^{1-5}' --focus -f '^{1-5}'
+  bspc node --to-desktop '{1-5}' --focus -f '{1-5}'
 
 # shift to adjacent workspace
 super + shift + {a, d}
@@ -241,3 +242,9 @@ alt + c
 ctrl + shift + 2
   sleep 1; xdotool type --delay 10 "$(xclip -o -selection clipboard | sed 's/^[\t]*//')"
 
+ctrl + shift + 3
+  automate_mcq
+
+
+super + v
+  bolo record

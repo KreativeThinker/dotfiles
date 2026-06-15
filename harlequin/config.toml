@@ -68,7 +68,7 @@ action = "code_editor.next_buffer"
 key_display = "^Tab"
 
 [[keymaps.main]]
-keys = "ctrl+enter"
+keys = "ctrl+l"
 action = "code_editor.run_query"
 key_display = "^⏎"
 
@@ -233,7 +233,7 @@ keys = "shift+delete"
 action = "code_editor.delete_line"
 
 [[keymaps.main]]
-keys = "ctrl+enter"
+keys = "ctrl+shift+enter"
 action = "data_catalog.insert_name"
 key_display = "^⏎"
 

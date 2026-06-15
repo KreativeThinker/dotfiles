@@ -8,6 +8,7 @@ vim.opt.timeoutlen = 300 --in ms
 map("i", "jk", "<Esc>", { noremap = true, silent = true })
 map("t", "jk", [[<C-\><C-n>]], { noremap = true, silent = true })
 map({ "n" }, "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy complete file", silent = true })
+map({ "i" }, "<C-BS>", "<C-w>", { noremap = true, desc = "Delete previous word", silent = true })
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })

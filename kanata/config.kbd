@@ -1,25 +1,126 @@
+#|
+Author: Anumeya Sehgal
+Github: https://github.com/KreativeThinker/kanata-config
+Layers: 3
+  1. Insert - QWERTY
+  2. Normal - Vim like-navigation (space)
+  3. Visual - Vim like-visual mode (v)
+
+Home-row mods: Yes (esc, alt, shift, ctrl, super)
+Use with polybar tooltip for mode selection
+
+Additionally use alongside some tool like https://github.com/mdSlash/hyprkan 
+to dynamically switch layers e.g. for nvim - always stick to default as nvim keybinds are separate
+(To be explored)
+|#
+
 (defcfg
   process-unmapped-keys yes
 )
 
 (defsrc
-  caps a s d f j k l ;
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
+
 (defvar
   tap-time 150
   hold-time 200
 )
 
+;; Home-row mods
 (defalias
-  escctrl (tap-hold 200 200 esc lctl)
-  a (multi f24 (tap-hold $tap-time $hold-time a lalt))
-  s (multi f24 (tap-hold $tap-time $hold-time s lsft))
-  d (multi f24 (tap-hold $tap-time $hold-time d lctl))
-  f (multi f24 (tap-hold $tap-time $hold-time f lmet))
-  l (multi f24 (tap-hold $tap-time $hold-time l rsft))
-  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
+  ;; tap for escape hold for lctl
+  caps (tap-hold $tap-time $hold-time esc lctl)
+
+  ;; a, lalt
+  a (tap-hold $tap-time $hold-time a lalt)
+
+  ;; s, lsft
+  s (tap-hold $tap-time $hold-time s lsft)
+
+  ;; d, lctl
+  d (tap-hold $tap-time $hold-time d lctl)
+
+  ;; f, super
+  f (tap-hold $tap-time $hold-time f lmet)
+
+  ;; l, rsft
+  l (tap-hold $tap-time $hold-time l rsft)
+
+  ;; ;, super
+  ; (tap-hold $tap-time $hold-time ; rmet)
+
+  ;; tab, lalt
+  lalt (tap-hold $tap-time $hold-time tab lalt)
+
+  ;; bspc, ralt
+  ralt (tap-hold $tap-time $hold-time bspc ralt)
+)
+
+;; Number keys -> auto-symbol
+(defalias
+  n1 (tap-hold $tap-time $hold-time 1 S-1)
+  n2 (tap-hold $tap-time $hold-time 2 S-2)
+  n3 (tap-hold $tap-time $hold-time 3 S-3)
+  n4 (tap-hold $tap-time $hold-time 4 S-4)
+  n5 (tap-hold $tap-time $hold-time 5 S-5)
+  n6 (tap-hold $tap-time $hold-time 6 S-6)
+  n7 (tap-hold $tap-time $hold-time 7 S-7)
+  n8 (tap-hold $tap-time $hold-time 8 S-8)
+  n9 (tap-hold $tap-time $hold-time 9 S-9)
+  n0 (tap-hold $tap-time $hold-time 0 S-0)
+)
+
+;; Navigation Layer
+(defalias
+  layer-mod (layer-while-held navigation)
+  spc (tap-hold $tap-time $hold-time spc @layer-mod)
 )
 
 (deflayer base
-  @escctrl @a @s @d @f @j @k @l @;
+  grv   @n1     @n2     @n3     @n4     @n5     @n6     @n7    @n8    @n9     @n0     -    =    bspc
+  tab   q       w       e       r       t       y       u      i      o       p       [    ]    \
+  @caps @a      @s      @d      @f      g       h       j      k      @l      @;      '    ret
+  lsft  z       x       c       v       b       n       m      ,      .       /       rsft
+  lctl  lmet    @lalt             @spc                 @ralt rmet rctl
 )
+
+
+(defalias
+  s1 S-1
+  s2 S-2
+  s3 S-3
+  s4 (tap-hold $tap-time $hold-time S-4 end)
+  s5 S-5
+  s6 (tap-hold $tap-time $hold-time S-6 home)
+  s7 S-7
+  s8 S-8
+  s9 S-9
+  s0 S-0
+)
+
+(defalias
+  me C-right
+  mr C-S-z
+  my C-c
+  mu C-z
+  mp C-v
+  mb C-left
+  mg C-end
+  mt C-home
+  wdel C-bspc
+)
+
+(deflayer navigation
+  grv   @s1     @s2     @s3     @s4     @s5     @s6     @s7    @s8    @s9     @s0     -    =    bspc
+  tab   _       _       @me     @mr     @mt       @my     @mu    _      _       @mp     _    _    _
+  @caps @a      @s      @d      @f      @mg       left    down   up     right   @;      '    ret
+  lsft  z       x       c       v       @mb     n       m      ,      .       /       rsft
+  lctl  lmet    @lalt             @spc                 @wdel rmet rctl
+)
+
+;; TODO: Define additional config for visual mode
